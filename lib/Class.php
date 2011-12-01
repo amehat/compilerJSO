@@ -1,4 +1,9 @@
 <?php
+/**
+  * Recuperation des donnees de la classe
+  * @author Arnaud Mehat
+  * @version 1.0
+  */
 class Classe {
 	
 	private $content;
@@ -8,6 +13,12 @@ class Classe {
 	private $functions = array ();
 	private $lineFirstFunction = 0;
 	
+	/**
+	  * constructeur
+	  * @param String $content
+	  * @return void
+	  * @access public
+	  */
 	public function __construct ( $content ){
 		$this->content = $content;	
 		
@@ -41,6 +52,12 @@ class Classe {
 		$this->setOption ('sourceArray', $this->aContent);
 	}
 	
+	/**
+	  * retourne le nom de la classe
+	  * @access public
+	  * @return void
+	  * @access public
+	  */
 	public function getClassName (){
 		foreach ($this->aContent as $line){
 			if ( 'class' == $line[0]){
@@ -49,6 +66,11 @@ class Classe {
 		}
 	}	
 	
+	/**
+	  * Retourne le nom de la classe etendue
+	  * @access public
+	  * @return void
+	  */
 	public function getClassExtends (){
 		foreach ($this->aContent as $line){
 			if ( ('class' == $line[0]) && ('extends' == $line[2]) ){
@@ -59,6 +81,11 @@ class Classe {
 		}
 	}
 	
+	/**
+	  * retourne le contenu du constructeur
+	  * @return void
+	  * @access public
+	  */
 	public function getDataConstructer (){
 		$start;
 		$end = $this->lineFirstFunction;
@@ -85,6 +112,11 @@ class Classe {
 		return $content;	
 	}
 	
+	/**
+	  * retourne le nom du fonction
+	  * @access public
+	  * @return String $this->functions
+	  */
 	public function getFunctionName (){
 		for($i=0; $i < count($this->aContent); $i++){
 			$content = $this->aContent[$i];	
@@ -115,6 +147,12 @@ class Classe {
 		return $this->functions;		
 	}
 	
+	/**
+	  * Retourne le contenu des fonctions
+	  * @param Int $iCurrent
+	  * @access public
+	  * @return Array $data
+	  */
 	public function getDataFunction ($iCurrent){
 		$openTag = 1;
 		$closeTag = 0;
@@ -136,7 +174,6 @@ class Classe {
 				$data = rtrim($data);
 				if ( '}' == substr($data, strlen($data)-1, strlen($data)) ){
 					$data = substr($data, 0, strlen($data)-1);
-					//$data .= "\n";
 					$data .= "}";
 				}
 				return $data;
@@ -146,14 +183,25 @@ class Classe {
 			$openTag = $openTag + $countOpenTag;
 
 		}
-		//echo $data;
 		return $data;
 	}
 	
+	/**
+	  * Permet l'ajout d'une option
+	  * @param String $key
+	  * @param String $value
+	  * @return void
+	  * @access public
+	  */
 	public function setOption ($key, $value){
 		$this->option[$key] = $value;	
 	}
 	
+	/**
+	  * Retourne la liste des options
+	  * @return Array $this->option
+	  * @access public
+	  */
 	public function getOption (){
 		return $this->option;	
 	}

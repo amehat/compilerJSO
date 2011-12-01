@@ -1,4 +1,9 @@
 <?php
+/**
+  * Compilateur des JSO en JS
+  * @author Arnaud Mehat
+  * @version 1.0
+  */
 class Compiler {
 	
 	private $params;
@@ -7,6 +12,12 @@ class Compiler {
 	private $output = false;
 	private $stop = false;
 	
+	/**
+	  * constructeur
+	  * @param Array $params
+	  * @return void
+	  * @access public
+	  */
 	public function __construct ( $params ){
 		$this->params = $params;
 		echo '******* Compiler JSO *******';
@@ -14,6 +25,11 @@ class Compiler {
 		$this->run ();
 	}	
 	
+	/**
+	  * Recupere les options passees en parametres
+	  * @return void | Boolean false
+	  * @access public
+	  */
 	public function getFile (){
 		if ( is_array($this->params) ){
 			
@@ -80,6 +96,11 @@ class Compiler {
 		}	
 	}
 	
+	/**
+	  * Retourne le contenu d'un fichier
+	  * @param String $file
+	  * @return void
+	  */
 	public function getContentFile ( $file ){
 		if ( file_exists ($file) ){
 			if ($fp = @fopen ($file, 'r')){
@@ -91,6 +112,13 @@ class Compiler {
 		}
 	} 
 	
+	/**
+	  * Creation du fichier JS
+	  * @param String $file
+	  * @param String $content
+	  * @return Boolean
+	  * @access public
+	  */
 	public function createFile ( $file, $content ){
 		if ( false == $this->output ){
 			$aSource = explode(DIRECTORY_SEPARATOR, $file);
@@ -122,6 +150,11 @@ class Compiler {
 		}
 	}
 	
+	/**
+	  * Lance la compilation
+	  * @return void
+	  * @access public
+	  */
 	public function run (){
 		$this->getFile ();	
 		if ( false == $this->stop ){

@@ -1,6 +1,18 @@
 <?php
+/**
+  * Formattage du contenu du fichier JS
+  * @package Template
+  * @author Arnaud Mehat
+  * @version 1.0
+  */
 class Template_Js {
 	
+	/** 
+	  * Retourne le contenu
+	  * @param Array $options
+	  * @return String $content
+	  * @access public
+	  */
 	public function getContent ($options){
 		$content = '';
 		$content .= $this->getConstructer ($options);
@@ -10,6 +22,12 @@ class Template_Js {
 		return $content;
 	}
 	
+	/**
+	  * Retourne le constructeur 
+	  * @param Array $options
+	  * @return String $content
+	  * @access public
+	  */
 	public function getConstructer ($options){
 		$content  = 'function '.$options['className']. ' (';
 		$fn = $options['function'];
@@ -25,13 +43,17 @@ class Template_Js {
 		}
 		$content .= '){ ' . "\n";
 		$content .= '	'.$options['data'] . "\n";
-		//$content .= '}';
-		//$content .=  "\n". "\n";
 		$content .= '	' . $options['dataConstructer'];
 		$content .= "\n";
 		return $content;
 	}
 	
+	/**
+	  * Retourne les methodes
+	  * @param Array $options
+	  * @access public
+	  * @return String $content
+	  */
 	public function getMethod ($options){
 		$content  = '	if ( typeof '.$options['className'].'.initialized == "undefined" ) {';
 		$content .= "\n\n";
@@ -48,9 +70,7 @@ class Template_Js {
 				}
 				$content .= '){ '. "\n";
 				$content .= '	'.$fn[$j]['data'] . "\n";
-				//$content .= '		}';
 				$content .= "\n";
-				//$content .= "\n";
 			}
 		}
 		$content .= '		'.$options['className'].'.initialized = true; ';
