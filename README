@@ -1,0 +1,109 @@
+Compiler JSO
+
+1. Description
+CompilerJSO permet d'ecrire des classes en javascript sous une forme proche des classes php.
+Une fois écritent, il suffit de compiler le fichier jso pour obtenir un fichier js.
+Le résultat est une classe de type javascript.
+
+La compilation se fait en ligne de commande.
+
+2. Les commandes
+Syntaxe  : $ php cli.php -option parametres
+
+Liste des options :
+-h aide
+-v version de compiler JSO
+-f fichier jso (adresse complete) à compiler
+-p adresse de destination (optionnel)
+
+3. requis
+php 5
+
+4. exemple
+$php cli.php -h
+affiche :
+******* Compiler JSO *******
+Compiler JSO help 
+Syntax : 
+	php cli.php -f /home/me/myfile.jso 
+list options : 
+-f {file to compiler} 
+	example : -f /home/me/myfile.jso
+-h help
+	example : -h 
+****************************
+
+$php cli.php -v
+affiche :
+******* Compiler JSO *******
+Compiler JSO version 
+Version : 1.0.0
+****************************
+
+$php cli.php -f /home/me/src/file.jso
+affiche :
+******* Compiler JSO *******
+file JSO : /home/me/src/file.jso
+file JS  : /home/me/src/file.js
+Success create file
+****************************
+
+$php cli.php -f /home/me/src/file.jso -p /home/me/js/
+affiche :
+******* Compiler JSO *******
+file JSO : /home/me/src/file.jso
+file JS  : /home/me/js/file.js
+Success create file
+****************************
+
+5. Comment ecrire une classe jso
+	5.1 Declaration de classe
+		class nomDeMaClasse {
+			// code
+		}
+	5.2 Constructeur
+		Un constructeur est une fonction portant le nom __construct et ne contenant que des propriétés.
+		function __construct (parameter){
+			// initialisation et/ou définition des proprietes
+		}
+		exemple :
+		function __construct (id){
+			this.id = id;
+			this.name = 'me';
+		}
+		erreur :
+		function __construct (id){
+			if ( 3 == id){
+				return id;
+			}
+		}
+
+	5.3 Méthodes
+		function getId (){
+			// code
+		}
+
+	5.4 Exemple complet
+		class Personn {
+			function __construct (id){
+				this.id = id;
+				this.firstname;
+				this.lastname;
+			}
+
+			function setFirstName ( firstname ){
+				this.firstname = firstname;
+			}
+
+			function setLastName ( lastname ){
+				this.lastname = lastname;
+			}
+
+			function getFirstName (){
+				return this.firstname;
+			}
+
+			function  getLastName (){
+				return this.lastname;
+			}
+		}
