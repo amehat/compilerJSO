@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Example ClassJS</title>
+		<!--link rel="stylesheet" href="main.css" type="text/css"  media="screen"-->
+	</head>
+	<body>
+			<h1>Compiler JSO</h1>
+			<p>Le r&eacute;sultat est dans votre inspecteur de code (via un console.log).</p>
+			<p>Cloner avec git Compiler JSO : git@github.com:amehat/compilerJSO.git</p>
+
+
+	<script type="text/javascript" src="js/lib/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/personn.js"></script>
+	<script>
+	$(document).ready(function (){
+		try {
+			var personn = new Personn ();
+			personn.setPrenom ('Arnaud');
+			personn.setNom ('Mehat');
+			console.log ( personn.getPrenom ()  + ' ' + personn.getNom ());
+		} catch (e){
+			console.log(e);	
+		}
+	});
+	</script>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+class Personn {
+	function __construct (){
+		this.prenom;
+		this.nom;	
+	}	
+	
+	function setPrenom (name){
+		this.prenom = name;	
+	}
+	
+	function setNom (name){
+		this.nom = name;	
+	}
+	
+	function getPrenom (){
+		return this.prenom;	
+	}
+	
+	function getNom (){
+		return this.nom;	
+	}
+}
